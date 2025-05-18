@@ -1,4 +1,4 @@
-name: ML Pipeline
+name: ML Tests Only
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build-and-train:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,12 +28,3 @@ jobs:
 
       - name: Run unit tests
         run: pytest tests/ --maxfail=1 --disable-warnings -q
-
-      - name: Train ML model
-        run: python src/train.py
-
-      - name: Upload model artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: random_forest_model
-          path: model/random_forest.pkl

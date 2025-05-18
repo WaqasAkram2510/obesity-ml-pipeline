@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
@@ -37,7 +37,7 @@ jobs:
         python src/train.py
 
     - name: Upload model artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: random_forest_model
         path: model/random_forest.pkl

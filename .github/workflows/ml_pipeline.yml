@@ -33,7 +33,6 @@ jobs:
         python src/train.py
 
     - name: Upload trained model artifact
-      uses: actions/upload-artifact@v3
-      with:
+      uses: actions/upload-artifact@v3.0.0
         name: random_forest_model
         path: model/random_forest.pkl

@@ -34,5 +34,6 @@ jobs:
 
     - name: Upload trained model artifact
       uses: actions/upload-artifact@v3.0.0
+      with:
         name: random_forest_model
         path: model/random_forest.pkl

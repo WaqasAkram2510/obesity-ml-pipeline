@@ -1,20 +1,18 @@
-name: ML Tests Only
+name: ML_pipeline
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+  workflow_dispatch: 
+
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v4
@@ -27,4 +25,13 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run unit tests
-        run: pytest tests/ --maxfail=1 --disable-warnings -q
+        run: pytest tests/ 
+     
+      - name: Train model
+        run: python src/train.py
+
+      - name: Upload model artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: random_forest_model
+          path: model/random_forest.pkl
